@@ -6,7 +6,7 @@ public class Customer implements Comparable<Customer> {
 private int customerId;
 private String firstName,lastName,email,password;
 private double registrationamt;
-private LocalDate dob;
+private LocalDate dob,subscriptionPaidDate,LastPaidDate;
 private ServicePlan plan;
 private static int counterId;
 
@@ -15,7 +15,7 @@ static {
 }
 
 public Customer(String firstName, String lastName, String email, String password, double registrationamt, LocalDate dob,
-		ServicePlan plan) {
+		LocalDate subscriptionPaidDate,ServicePlan plan) {
 	super();
 	this.firstName = firstName;
 	this.lastName = lastName;
@@ -23,6 +23,8 @@ public Customer(String firstName, String lastName, String email, String password
 	this.password = password;
 	this.registrationamt = registrationamt;
 	this.dob = dob;
+	this.subscriptionPaidDate=subscriptionPaidDate;
+	this.LastPaidDate=LocalDate.parse(subscriptionPaidDate.toString());
 	this.plan = plan;
 	this.customerId=++counterId;
 	
@@ -36,7 +38,7 @@ public Customer(String email) {
 public String toString() {
 	return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 			+ email +" ,registrationamt=" + registrationamt + ", dob=" + dob + ", plan="
-			+ plan + "]";
+			+ plan + " Subscription Paid Date ="+subscriptionPaidDate+"]";
 }
 
 public boolean equals(Object obj){
@@ -48,6 +50,7 @@ public boolean equals(Object obj){
 	}
 	return false;
 }
+
 
 public double getRegistrationamt() {
 	return registrationamt;
@@ -76,12 +79,22 @@ public ServicePlan getPlan() {
 public void setPlan(ServicePlan plan) {
 	this.plan = plan;
 }
+public LocalDate getLoginDate() {
+	return subscriptionPaidDate;
+}
+
+public String getLastName() {
+	return this.lastName;
+}
+
+public String getFirstName() {
+	return firstName;
+}
+public LocalDate getLastPaidDate() {
+	return LastPaidDate;
+}
 @Override
 public int compareTo(Customer o) {
 	return this.email.compareTo(o.email);
 }
-
-
-
-
 }
